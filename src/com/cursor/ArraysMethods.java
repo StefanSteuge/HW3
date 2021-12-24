@@ -10,6 +10,12 @@ public class ArraysMethods {
         this.array = array;
     }
 
+    private void swap(int[] array, int k, int i) {
+        int tmp = array[k];
+        array[k] = array[i];
+        array[i] = tmp;
+    }
+
     public void even() {
         System.out.println("1. Заповнити масив тільки парними числами:");
         for (int i = 0; i < array.length; i++) {
@@ -56,10 +62,17 @@ public class ArraysMethods {
 
     public void sort() {
         System.out.println("\n" + "6. Просортувати масив в порядку зростання:");
-        for (int k : array) {
-            Arrays.sort(array);
-            System.out.print(k + " ");
+        boolean sortIndex = true;
+        while (sortIndex) {
+            sortIndex = false;
+            for (int k = 1; k < array.length; k++) {
+                if (array[k] < array[k - 1]) {
+                    swap(array, k, k - 1);
+                    sortIndex = true;
+                }
+            }
         }
+        System.out.print(Arrays.toString(array));
     }
 
     public void min() {
